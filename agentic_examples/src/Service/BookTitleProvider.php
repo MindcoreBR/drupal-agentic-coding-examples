@@ -32,7 +32,7 @@ final class BookTitleProvider {
       ->execute();
 
     $nodes = $storage->loadMultiple($ids);
-    return array_map(static fn(NodeInterface $node): string => $node->label(), $nodes);
+    return array_values(array_map(static fn(NodeInterface $node): string => $node->label(), $nodes));
   }
 
 }

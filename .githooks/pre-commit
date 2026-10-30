@@ -7,7 +7,10 @@ if [[ -z "$project_root" || ! -x "$project_root/vendor/bin/phpcs" ]]; then
   exit 1
 fi
 
-mapfile -d '' -t staged_php < <(git diff --cached --name-only -z --diff-filter=ACMR -- '*.php')
+staged_php=()
+while IFS= read -r -d '' file; do
+  staged_php+=("$file")
+done < <(git diff --cached --name-only -z --diff-filter=ACMR -- '*.php')
 if ((${#staged_php[@]} == 0)); then
   exit 0
 fi

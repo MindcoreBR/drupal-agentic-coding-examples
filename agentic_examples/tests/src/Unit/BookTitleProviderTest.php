@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\agentic_examples\Unit;
 
+use Drupal\agentic_examples\Service\BookTitleProvider;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\UnitTestCase;
-use Drupal\agentic_examples\Service\BookTitleProvider;
 
 /**
  * Tests the accessible published book title query.
@@ -18,6 +18,9 @@ use Drupal\agentic_examples\Service\BookTitleProvider;
  */
 final class BookTitleProviderTest extends UnitTestCase {
 
+  /**
+   * Verifies the results from an access-checked query.
+   */
   public function testItReturnsTitlesFromTheAccessCheckedQuery(): void {
     $query = $this->createMock(QueryInterface::class);
     $query->expects($this->once())
