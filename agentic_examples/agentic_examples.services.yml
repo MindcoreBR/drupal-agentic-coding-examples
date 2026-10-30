@@ -1,0 +1,4 @@
+services:
+  agentic_examples.book_title_provider:
+    class: Drupal\agentic_examples\Service\BookTitleProvider
+    arguments: ['@entity_type.manager']

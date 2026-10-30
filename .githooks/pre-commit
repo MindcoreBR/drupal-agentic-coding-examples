@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+project_root="${DRUPAL_PROJECT_ROOT:-}"
+if [[ -z "$project_root" || ! -x "$project_root/vendor/bin/phpcs" ]]; then
+  echo "Set DRUPAL_PROJECT_ROOT to a Drupal project with vendor/bin/phpcs." >&2
+  exit 1
+fi
+
+mapfile -d '' -t staged_php < <(git diff --cached --name-only -z --diff-filter=ACMR -- '*.php')
+if ((${#staged_php[@]} == 0)); then
+  exit 0
+fi
+
+"$project_root/vendor/bin/phpcs" "${staged_php[@]}"

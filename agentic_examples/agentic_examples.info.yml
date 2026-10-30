@@ -1,0 +1,5 @@
+name: 'Agentic coding examples'
+type: module
+description: 'Small examples accompanying a Mindcore Drupal development ebook.'
+package: Examples
+core_version_requirement: ^11
